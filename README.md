@@ -1,8 +1,6 @@
 # Video-Poker
 Project for Visma
 
-Made in one day.
-
 ## How To Run
 Execute main.exe
 
