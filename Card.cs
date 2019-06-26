@@ -19,11 +19,15 @@ class Card : ICard, ISelectable, IFocusable, IDrawable{
 	ConsoleColor selectedFrameColor = ConsoleColor.Red;
 	ConsoleColor unSelectedFrameColor = ConsoleColor.Black;
 	
+	ConsoleColor cardColor = ConsoleColor.Black;
+	
 	public Card(){
 	}
 	public Card(CardRank rank, CardType type){
 		this.rank = rank;
 		this.type = type;
+		if (type == CardType.Hearts || type == CardType.Diamonds)
+			cardColor = ConsoleColor.Red;
 	}
 	
 	public Vector2i Position{
@@ -56,13 +60,15 @@ class Card : ICard, ISelectable, IFocusable, IDrawable{
 		Console.ForegroundColor = unSelectedFrameColor;
 		
 		//draw rank and type
+
+		Console.ForegroundColor = cardColor;
 		Console.SetCursorPosition(pos.x + RANKPOS.x, pos.y + RANKPOS.y);
 		Console.Write(rank);
 		Console.SetCursorPosition(pos.x + WIDTH - RANKPOS.x - rank.ToString().Length, pos.y + (HEIGHT-1) - RANKPOS.y);
 		Console.Write(rank);
 		Console.SetCursorPosition(pos.x + TYPEPOS.x, pos.y + TYPEPOS.y);
 		Console.Write(type);
-		
+		Console.ForegroundColor = ConsoleColor.Black;
 	}
 	public CardRank Rank {
 		get { return rank; }
@@ -70,7 +76,11 @@ class Card : ICard, ISelectable, IFocusable, IDrawable{
 	}
 	public CardType Type{
 		get { return type; }
-		set { type = value; }
+		set { 
+			type = value; 
+			if (type == CardType.Hearts || type == CardType.Diamonds)
+				cardColor = ConsoleColor.Red;
+		}
 	}
 	
 	public void Focus(bool isFocused){
