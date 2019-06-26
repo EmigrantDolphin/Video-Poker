@@ -74,6 +74,9 @@ class PointDistributer {
 		return true;
 	}	
 	
+	//*********
+	//Hand bools below
+	
 	private bool IsRoyalFlush(){
 		if (cards[0].Rank == CardRank.Ten && IsSequential())
 			return true;

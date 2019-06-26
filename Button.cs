@@ -2,10 +2,10 @@ using System;
 
 class Button : IFocusable, IDrawable{
 	
-	private Action action;
+	private Action action; // to be called on Press(); Set with lambda on declaration in constructor
 	private Vector2i pos = new Vector2i();
 	private Vector2i messagePos = new Vector2i(2, 2);
-	private int width = 10, height = 5;
+	private int width = 10, height = 5; //width dinamically changes to fit text
 	private string message = "Button";
 	
 	string wallSimbol = "o";
