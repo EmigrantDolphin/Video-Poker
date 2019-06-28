@@ -78,7 +78,13 @@ class PointDistributer {
 	//Hand bools below
 	
 	private bool IsRoyalFlush(){
-		if (cards[0].Rank == CardRank.Ten && IsSequential())
+		bool isSameSuit = false;
+		
+		foreach (KeyValuePair<CardRank, int> pair in rankCounter)
+			if (pair.Value == 5)
+				isSameSuit = true;
+		
+		if (cards[0].Rank == CardRank.Ten && IsSequential() && isSameSuit)
 			return true;
 		
 		return false;
