@@ -3,7 +3,7 @@
 
 namespace VideoPoker {
 
-    public enum PokerHand { RoyalFlush, StraightFlush, FourOfAKind, FullHouse, Flush, Straight, ThreeOfAKind, TwoPair, JacksOrBetter, None }
+    public enum PokerHand { RoyalFlush, StraightFlush, FourOfAKind, FullHouse, Flush, Straight, ThreeOfAKind, TwoPair, JacksOrBetter, Lost }
 
     public struct EvaluateResult {
         public string Message;
@@ -46,7 +46,7 @@ namespace VideoPoker {
             if (IsJacksOrBetter(cardsCopy))
                 return new EvaluateResult(PokerHand.JacksOrBetter, 1, "Jacks Or Better!");
 
-            return new EvaluateResult(PokerHand.None, 0, "You win NOTHING");
+            return new EvaluateResult(PokerHand.Lost, 0, "You win NOTHING");
         }
 
 

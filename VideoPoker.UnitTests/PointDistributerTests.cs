@@ -22,7 +22,7 @@ namespace VideoPoker.UnitTests {
         }
 
         [TestMethod]
-        public void EvaluateHand_PassingStraightFlush_ReturnStraightFlush() {
+        public void EvaluateHand_PassingStraightFlushCards_ReturnStraightFlush() {
             List<ICard> cards = new List<ICard>();
 
             cards.Add(new Card(CardRank.Five, CardType.Clubs));
@@ -37,7 +37,7 @@ namespace VideoPoker.UnitTests {
         }
 
         [TestMethod]
-        public void EvaluateHand_PassingFourOfAKind_ReturnFourOfAKind() {
+        public void EvaluateHand_PassingFourOfAKindCards_ReturnFourOfAKind() {
             List<ICard> cards = new List<ICard>();
 
             cards.Add(new Card(CardRank.Five, CardType.Spades));
@@ -52,7 +52,7 @@ namespace VideoPoker.UnitTests {
         }
 
         [TestMethod]
-        public void EvaluateHand_PassingFullHouse_ReturnFullHouse() {
+        public void EvaluateHand_PassingFullHouseCards_ReturnFullHouse() {
             List<ICard> cards = new List<ICard>();
 
             cards.Add(new Card(CardRank.Five, CardType.Hearts));
@@ -67,7 +67,7 @@ namespace VideoPoker.UnitTests {
         }
 
         [TestMethod]
-        public void EvaluateHand_PassingFlush_ReturnFlush() {
+        public void EvaluateHand_PassingFlushCards_ReturnFlush() {
             List<ICard> cards = new List<ICard>();
 
             cards.Add(new Card(CardRank.Five, CardType.Diamonds));
@@ -82,7 +82,7 @@ namespace VideoPoker.UnitTests {
         }
 
         [TestMethod]
-        public void EvaluateHand_PassingStraight_ReturnStraight() {
+        public void EvaluateHand_PassingStraightCards_ReturnStraight() {
             List<ICard> cards = new List<ICard>();
 
             cards.Add(new Card(CardRank.Jack, CardType.Diamonds));
@@ -97,7 +97,7 @@ namespace VideoPoker.UnitTests {
         }
 
         [TestMethod]
-        public void EvaluateHand_PassingThreeOfAKind_ReturnThreeOfAKind() {
+        public void EvaluateHand_PassingThreeOfAKindCards_ReturnThreeOfAKind() {
             List<ICard> cards = new List<ICard>();
 
             cards.Add(new Card(CardRank.Queen, CardType.Diamonds));
@@ -112,7 +112,7 @@ namespace VideoPoker.UnitTests {
         }
 
         [TestMethod]
-        public void EvaluateHand_PassingTwoPair_ReturnTwoPair() {
+        public void EvaluateHand_PassingTwoPairCards_ReturnTwoPair() {
             List<ICard> cards = new List<ICard>();
 
             cards.Add(new Card(CardRank.Queen, CardType.Diamonds));
@@ -127,7 +127,7 @@ namespace VideoPoker.UnitTests {
         }
 
         [TestMethod]
-        public void EvaluateHand_PassingJacksOrBetter_ReturnJacksOrBetter() {
+        public void EvaluateHand_PassingJacksOrBetterCards_ReturnJacksOrBetter() {
             List<ICard> cards = new List<ICard>();
 
             cards.Add(new Card(CardRank.Queen, CardType.Diamonds));
@@ -142,7 +142,7 @@ namespace VideoPoker.UnitTests {
         }
 
         [TestMethod]
-        public void EvaluateHand_PassingNone_ReturnNone() {
+        public void EvaluateHand_PassingLoseCards_ReturnLost() {
             List<ICard> cards = new List<ICard>();
 
             cards.Add(new Card(CardRank.Three, CardType.Diamonds));
@@ -153,7 +153,7 @@ namespace VideoPoker.UnitTests {
 
             var result = PointDistributer.EvaluateHand(cards);
 
-            Assert.AreEqual(PokerHand.None, result.Hand);
+            Assert.AreEqual(PokerHand.Lost, result.Hand);
         }
 
 
