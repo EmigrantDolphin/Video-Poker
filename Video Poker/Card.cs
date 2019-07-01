@@ -4,8 +4,8 @@ namespace VideoPoker {
     public class Card : ICard, ISelectable, IFocusable, IDrawable {
         Vector2 pos = new Vector2();
         readonly int width = 15, height = 15;
-        readonly Vector2 RANKPOS = new Vector2(2, 2);
-        readonly Vector2 TYPEPOS = new Vector2(4, 7);
+        readonly Vector2 rankPos = new Vector2(2, 2);
+        readonly Vector2 typePos = new Vector2(4, 7);
         CardRank rank;
         CardType type;
 
@@ -63,11 +63,11 @@ namespace VideoPoker {
             //draw rank and type
 
             Console.ForegroundColor = cardColor;
-            Console.SetCursorPosition(pos.x + RANKPOS.x, pos.y + RANKPOS.y);
+            Console.SetCursorPosition(pos.x + rankPos.x, pos.y + rankPos.y);
             Console.Write(rank);
-            Console.SetCursorPosition(pos.x + width - RANKPOS.x - rank.ToString().Length, pos.y + (height - 1) - RANKPOS.y);
+            Console.SetCursorPosition(pos.x + width - rankPos.x - rank.ToString().Length, pos.y + (height - 1) - rankPos.y);
             Console.Write(rank);
-            Console.SetCursorPosition(pos.x + TYPEPOS.x, pos.y + TYPEPOS.y);
+            Console.SetCursorPosition(pos.x + typePos.x, pos.y + typePos.y);
             Console.Write(type);
             Console.ForegroundColor = ConsoleColor.Black;
         }
