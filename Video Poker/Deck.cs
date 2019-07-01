@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Video_Poker {
     class Deck {
         Random rnd = new Random();
-
         List<ICard> cardList;
+
         public Deck() {
             cardList = new List<ICard>();
             foreach (CardType type in Enum.GetValues(typeof(CardType)))

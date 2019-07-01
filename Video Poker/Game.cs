@@ -1,25 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 
-enum CardType { Hearts, Clubs, Spades, Diamonds }
-enum CardRank { One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace }
-enum DrawState { FirstHand, DrawnHand }
-
 namespace Video_Poker {
+    enum CardType { Hearts, Clubs, Spades, Diamonds }
+    enum CardRank { One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace }
+
     class Game {
+        enum DrawState { FirstHand, DrawnHand }
+
         Deck deck;
         ConsoleKeyInfo keyInfo;
 
         int score = 0;
-        Vector2i scorePos = new Vector2i(40, 1);
+        Vector2 scorePos = new Vector2(40, 1);
         string messageForDiscard = "Select cards to discard";
         string messageForDraw = "Draw to gamble again";
-        Vector2i messagePos; // assigned relative to CardLayout dimensions;
+        Vector2 messagePos; // assigned relative to CardLayout dimensions;
 
 
 
         CardLayout cardLayout;
-        Vector2i layoutPos = new Vector2i(3, 3);
+        Vector2 layoutPos = new Vector2(3, 3);
         List<IFocusable> focusables;
         List<IDrawable> drawables;
         int focusIndex = 0; // currently focused item index in focusable list
@@ -42,7 +43,7 @@ namespace Video_Poker {
             InitButtons();
 
             //setting messagePos that is relative to cardLayout which size is set on population in RandomizeCards()
-            messagePos = new Vector2i(cardLayout.Position.x + cardLayout.Width / 2 - messageForDiscard.Length / 2,
+            messagePos = new Vector2(cardLayout.Position.x + cardLayout.Width / 2 - messageForDiscard.Length / 2,
                                       cardLayout.Position.y + cardLayout.Height + yOffset
                                     );
             //
@@ -58,9 +59,9 @@ namespace Video_Poker {
                     RandomizeSelectedCards();
                     Console.Clear();
                     EvaluateResult evaluateResult = PointDistributer.EvaluateHand(cardLayout.Cards);
-                    score += evaluateResult.score;
+                    score += evaluateResult.Score;
                     Console.SetCursorPosition(3, 30);
-                    Console.Write(evaluateResult.message + ", you win " + evaluateResult.score + " points");
+                    Console.Write(evaluateResult.Message + ", you win " + evaluateResult.Score + " points");
                 } else {
                     RandomizeCards();
                     Console.Clear();
@@ -72,7 +73,7 @@ namespace Video_Poker {
                     drawState = DrawState.FirstHand;
             });
             //setting position, message and adding to lists
-            drawButton.Position = new Vector2i(xOffset, cardLayout.Position.y + cardLayout.Height + yOffset);
+            drawButton.Position = new Vector2(xOffset, cardLayout.Position.y + cardLayout.Height + yOffset);
             drawButton.Message = drawButtonMessage;
 
             drawables.Add(drawButton as IDrawable);

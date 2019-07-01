@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 
 namespace Video_Poker {
 
     struct EvaluateResult {
-        public string message;
-        public int score;
+        public string Message;
+        public int Score;
 
         public EvaluateResult(string message, int score) {
-            this.message = message;
-            this.score = score;
+            Message = message;
+            Score = score;
         }
     }
 

@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Video_Poker {
     class Card : ICard, ISelectable, IFocusable, IDrawable {
-        Vector2i pos = new Vector2i();
-        readonly int WIDTH = 15, HEIGHT = 15;
-        readonly Vector2i RANKPOS = new Vector2i(2, 2);
-        readonly Vector2i TYPEPOS = new Vector2i(4, 7);
+        Vector2 pos = new Vector2();
+        readonly int width = 15, height = 15;
+        readonly Vector2 RANKPOS = new Vector2(2, 2);
+        readonly Vector2 TYPEPOS = new Vector2(4, 7);
         CardRank rank;
         CardType type;
 
@@ -35,31 +31,31 @@ namespace Video_Poker {
                 cardColor = ConsoleColor.Red;
         }
 
-        public Vector2i Position {
+        public Vector2 Position {
             get { return pos; }
             set { pos = value; }
         }
 
         public int Width {
-            get { return WIDTH; }
+            get { return width; }
         }
         public int Height {
-            get { return HEIGHT; }
+            get { return height; }
         }
 
         public void Draw() {
             //draw frame
             Console.ForegroundColor = frameColor;
-            for (int i = pos.x; i < WIDTH + pos.x; i++) {
+            for (int i = pos.x; i < width + pos.x; i++) {
                 Console.SetCursorPosition(i, pos.y);
                 Console.Write(wallSimbol);
-                Console.SetCursorPosition(i, pos.y + HEIGHT - 1);
+                Console.SetCursorPosition(i, pos.y + height - 1);
                 Console.Write(wallSimbol);
             }
-            for (int i = pos.y; i < HEIGHT + pos.y; i++) {
+            for (int i = pos.y; i < height + pos.y; i++) {
                 Console.SetCursorPosition(pos.x, i);
                 Console.Write(wallSimbol);
-                Console.SetCursorPosition(pos.x + WIDTH - 1, i);
+                Console.SetCursorPosition(pos.x + width - 1, i);
                 Console.Write(wallSimbol);
             }
             Console.ForegroundColor = unSelectedFrameColor;
@@ -69,7 +65,7 @@ namespace Video_Poker {
             Console.ForegroundColor = cardColor;
             Console.SetCursorPosition(pos.x + RANKPOS.x, pos.y + RANKPOS.y);
             Console.Write(rank);
-            Console.SetCursorPosition(pos.x + WIDTH - RANKPOS.x - rank.ToString().Length, pos.y + (HEIGHT - 1) - RANKPOS.y);
+            Console.SetCursorPosition(pos.x + width - RANKPOS.x - rank.ToString().Length, pos.y + (height - 1) - RANKPOS.y);
             Console.Write(rank);
             Console.SetCursorPosition(pos.x + TYPEPOS.x, pos.y + TYPEPOS.y);
             Console.Write(type);

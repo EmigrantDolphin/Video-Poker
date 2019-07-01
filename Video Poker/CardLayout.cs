@@ -1,27 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Video_Poker {
     class CardLayout : IDrawable {
 
-        Vector2i pos;
+        Vector2 pos;
         int width = 0, height = 0;
         int xOffset = 3;
         int slotCount = 5;
         List<ICard> cards;
 
         public CardLayout() {
-            pos = new Vector2i();
+            pos = new Vector2();
             cards = new List<ICard>();
         }
 
         public void AddCard(ICard card) {
             if (cards.Count >= slotCount)
                 return;
-            card.Position = new Vector2i(pos.x + cards.Count * card.Width + xOffset * cards.Count, pos.y);
+            card.Position = new Vector2(pos.x + cards.Count * card.Width + xOffset * cards.Count, pos.y);
             width = card.Position.x + card.Width - pos.x; // last added card in mind
             height = card.Height;
             cards.Add(card);
@@ -53,11 +49,11 @@ namespace Video_Poker {
             return cards[num];
         }
         public void SetCardAt(int num, ICard card) {
-            card.Position = new Vector2i(pos.x + num * card.Width + xOffset * num, pos.y);
+            card.Position = new Vector2(pos.x + num * card.Width + xOffset * num, pos.y);
             cards[num] = card;
         }
 
-        public Vector2i Position {
+        public Vector2 Position {
             get { return pos; }
             set { pos = value; }
         }

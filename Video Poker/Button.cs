@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Video_Poker {
     class Button : IFocusable, IDrawable {
 
         private Action action; // to be called on Press(); Set with lambda on declaration in constructor
-        private Vector2i pos = new Vector2i();
-        private Vector2i messagePos = new Vector2i(2, 2);
+        private Vector2 pos = new Vector2();
+        private Vector2 messagePos = new Vector2(2, 2);
         private int width = 10, height = 5; //width dinamically changes to fit text
         private string message = "Button";
 
@@ -45,7 +41,7 @@ namespace Video_Poker {
             get { return height; }
         }
 
-        public Vector2i Position {
+        public Vector2 Position {
             get { return pos; }
             set { pos = value; }
         }
