@@ -13,10 +13,9 @@ namespace VideoPoker {
 
         int score = 0;
         Vector2 scorePos = new Vector2(40, 1);
-        string messageForDiscard = "Select cards to discard";
-        string messageForDraw = "Draw to gamble again";
         Vector2 messagePos; // assigned relative to CardLayout dimensions;
-
+        Text messageForDiscard = new Text("Selected cards to discard");
+        Text messageForDraw = new Text("Draw to gamble again");
 
 
         CardLayout cardLayout;
@@ -43,9 +42,11 @@ namespace VideoPoker {
             InitButtons();
 
             //setting messagePos that is relative to cardLayout which size is set on population in RandomizeCards()
-            messagePos = new Vector2(cardLayout.Position.x + cardLayout.Width / 2 - messageForDiscard.Length / 2,
+            messagePos = new Vector2(cardLayout.Position.x + cardLayout.Width / 2 - messageForDiscard.Message.Length / 2,
                                       cardLayout.Position.y + cardLayout.Height + yOffset
                                     );
+            messageForDiscard.Position = messagePos;
+            messageForDraw.Position = messagePos;
             //
             drawables.Add(cardLayout as IDrawable);
             focusables[0].Focus(true);
@@ -108,11 +109,11 @@ namespace VideoPoker {
             //draw score and message
             Console.SetCursorPosition(scorePos.x, scorePos.y);
             Console.Write("Score: " + score);
-            Console.SetCursorPosition(messagePos.x, messagePos.y);
+
             if (drawState == DrawState.FirstHand)
-                Console.Write(messageForDiscard);
+                messageForDiscard.Draw();
             else
-                Console.Write(messageForDraw);
+                messageForDraw.Draw();
             //draw drawables
             foreach (IDrawable drawable in drawables)
                 drawable.Draw();
