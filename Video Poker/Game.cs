@@ -8,18 +8,14 @@ namespace VideoPoker {
     class Game {
         enum DrawState { FirstHand, DrawnHand }
 
-        Deck deck;
+        CardHand cardHand;
         ConsoleKeyInfo keyInfo;
 
         int score = 0;
         Vector2 scorePos = new Vector2(40, 1);
-        Vector2 messagePos; // assigned relative to CardLayout dimensions;
         Text messageForDiscard = new Text("Selected cards to discard");
         Text messageForDraw = new Text("Draw to gamble again");
 
-
-        CardLayout cardLayout;
-        Vector2 layoutPos = new Vector2(3, 3);
         List<IFocusable> focusables;
         List<IDrawable> drawables;
         int focusIndex = 0; // currently focused item index in focusable list
@@ -34,21 +30,24 @@ namespace VideoPoker {
             //Initializing variables
             focusables = new List<IFocusable>();
             drawables = new List<IDrawable>();
-            cardLayout = new CardLayout();
-            cardLayout.Position = layoutPos;
+            cardHand = new CardHand();
+            cardHand.Position = new Vector2(3, 3);
 
-            //populating cardLayout (5 slots) and initializing button position and action etc
-            RandomizeCards();
+            foreach (ICard card in cardHand) {
+                focusables.Add(card as IFocusable);
+                drawables.Add(card as IDrawable);
+            }
+
             InitButtons();
 
             //setting messagePos that is relative to cardLayout which size is set on population in RandomizeCards()
-            messagePos = new Vector2(cardLayout.Position.x + cardLayout.Width / 2 - messageForDiscard.Message.Length / 2,
-                                      cardLayout.Position.y + cardLayout.Height + yOffset
+            Vector2 messagePos = new Vector2(cardHand.Position.x + cardHand.Width / 2 - messageForDiscard.Message.Length / 2,
+                                      cardHand.Position.y + cardHand.Height + yOffset
                                     );
+            
             messageForDiscard.Position = messagePos;
             messageForDraw.Position = messagePos;
-            //
-            drawables.Add(cardLayout as IDrawable);
+
             focusables[0].Focus(true);
             Draw();
         }
@@ -57,14 +56,14 @@ namespace VideoPoker {
             //passing lambda expression to action inside button
             drawButton = new Button(() => {
                 if (drawState == DrawState.FirstHand) {
-                    RandomizeSelectedCards();
+                    cardHand.RandomizeSelectedCards();
                     Console.Clear();
-                    EvaluateResult evaluateResult = PointDistributer.EvaluateHand(cardLayout.Cards);
+                    EvaluateResult evaluateResult = PointDistributer.EvaluateHand(cardHand);
                     score += evaluateResult.Score;
                     Console.SetCursorPosition(3, 30);
                     Console.Write(evaluateResult.Message + ", you win " + evaluateResult.Score + " points");
                 } else {
-                    RandomizeCards();
+                    cardHand.RandomizeCards();
                     Console.Clear();
                 }
 
@@ -74,7 +73,7 @@ namespace VideoPoker {
                     drawState = DrawState.FirstHand;
             });
             //setting position, message and adding to lists
-            drawButton.Position = new Vector2(xOffset, cardLayout.Position.y + cardLayout.Height + yOffset);
+            drawButton.Position = new Vector2(xOffset, cardHand.Position.y + cardHand.Height + yOffset);
             drawButton.Message = drawButtonMessage;
 
             drawables.Add(drawButton as IDrawable);
@@ -131,29 +130,6 @@ namespace VideoPoker {
             if (focusIndex > 0)
                 focusIndex--;
             focusables[focusIndex].Focus(true);
-        }
-
-        private void RandomizeSelectedCards() {
-            for (int i = 0; i < cardLayout.Count; i++)
-                if ((cardLayout.GetCardAt(i) as ISelectable).IsSelected) {
-                    int tempFocusIndex = focusables.IndexOf(cardLayout.GetCardAt(i) as IFocusable); // so the order in focusables doesn't change
-                    cardLayout.SetCardAt(i, deck.GetRandomCard());
-                    focusables[tempFocusIndex] = (cardLayout.GetCardAt(i)) as IFocusable;
-                }
-        }
-
-        private void RandomizeCards() {
-            deck = new Deck();
-            if (cardLayout.Count != cardLayout.SlotCount) // runs only once, at the start
-                for (int i = 0; i < cardLayout.SlotCount; i++) {
-                    cardLayout.AddCard(deck.GetRandomCard());
-                    focusables.Add((cardLayout.GetCardAt(i)) as IFocusable);
-                } else
-                for (int i = 0; i < cardLayout.Count; i++) {
-                    int tempFocusIndex = focusables.IndexOf(cardLayout.GetCardAt(i) as IFocusable); // so the order in focusables doesn't change				
-                    cardLayout.SetCardAt(i, deck.GetRandomCard());
-                    focusables[tempFocusIndex] = (cardLayout.GetCardAt(i)) as IFocusable;
-                }
         }
 
 

@@ -60,7 +60,7 @@
   <ItemGroup>
     <Compile Include="Button.cs" />
     <Compile Include="Card.cs" />
-    <Compile Include="CardLayout.cs" />
+    <Compile Include="CardHand.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="ICard.cs" />

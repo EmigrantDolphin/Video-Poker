@@ -81,6 +81,8 @@ namespace VideoPoker {
                 type = value;
                 if (type == CardType.Hearts || type == CardType.Diamonds)
                     cardColor = ConsoleColor.Red;
+                else
+                    cardColor = ConsoleColor.Black;
             }
         }
 

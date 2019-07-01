@@ -19,8 +19,8 @@ namespace VideoPoker {
 
     public class PointDistributer {
 
-        public static EvaluateResult EvaluateHand(List<ICard> cards) {
-            List<ICard> cardsCopy = new List<ICard>(cards);
+        public static EvaluateResult EvaluateHand(CardHand cardHand) {
+            List<ICard> cardsCopy = new List<ICard>(cardHand.CardList);
             SortedDictionary<CardRank, int> rankCounter = new SortedDictionary<CardRank, int>(); // how many cards of same rank
             SortByRank(cardsCopy);
             PopulateRankCounter(cardsCopy, rankCounter);
