@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Video_Poker {
+namespace VideoPoker {
     class Deck {
         Random rnd = new Random();
         List<ICard> cardList;

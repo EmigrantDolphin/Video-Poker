@@ -1,5 +1,5 @@
 ﻿
-namespace Video_Poker {
+namespace VideoPoker {
 
     interface ICard {
         Vector2 Position { get; set; }

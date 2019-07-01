@@ -1,5 +1,5 @@
 ﻿
-namespace Video_Poker {
+namespace VideoPoker {
 
     interface ISelectable {
         void Select(bool isSelected);

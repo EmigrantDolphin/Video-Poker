@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace Video_Poker {
+namespace VideoPoker {
 
     enum PokerHand { RoyalFlush, StraightFlush, FourOfAKind, FullHouse, Flush, Straight, ThreeOfAKind, TwoPair, JacksOrBetter, None }
 

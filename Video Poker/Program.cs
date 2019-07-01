@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Video_Poker {
+namespace VideoPoker {
     class Program {
         public static void Main(String[] args) {
             int windowWidth;

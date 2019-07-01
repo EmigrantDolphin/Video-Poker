@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Video_Poker {
+namespace VideoPoker {
     class Button : IFocusable, IDrawable {
 
         private Action action; // to be called on Press(); Set with lambda on declaration in constructor

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Video_Poker {
+namespace VideoPoker {
     class Card : ICard, ISelectable, IFocusable, IDrawable {
         Vector2 pos = new Vector2();
         readonly int width = 15, height = 15;

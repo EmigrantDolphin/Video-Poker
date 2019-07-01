@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Video_Poker {
+namespace VideoPoker {
     enum CardType { Hearts, Clubs, Spades, Diamonds }
     enum CardRank { One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace }
 

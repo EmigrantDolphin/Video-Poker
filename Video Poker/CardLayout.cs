@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Video_Poker {
+namespace VideoPoker {
     class CardLayout : IDrawable {
 
         Vector2 pos;
