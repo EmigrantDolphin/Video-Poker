@@ -11,10 +11,10 @@ namespace VideoPoker {
         CardHand cardHand;
 
         int score = 0;
-        Text scoreText = new Text(new Vector2(40,1), "Score: 0"); //updated
-        Text messageForDiscard = new Text("Selected cards to discard");
-        Text messageForDraw = new Text("Draw to gamble again");
-        Text messageForResult = new Text(new Vector2(3,30)); //updated
+        Text scoreText = new Text(new Vector2(40,1), "Score: 0");
+        readonly Text messageForDiscard = new Text(new Vector2(34, 23), "Selected cards to discard");
+        readonly Text messageForDraw = new Text(new Vector2(34, 23), "Draw to gamble again");
+        Text messageForResult = new Text(new Vector2(3,30)); 
 
         List<IFocusable> focusables;
         List<IDrawable> drawables;
@@ -22,9 +22,8 @@ namespace VideoPoker {
 
         Button drawButton;
         string drawButtonMessage = "Draw";
+
         DrawState drawState = DrawState.FirstHand;
-        int yOffset = 5; // used as distance between drawables
-        int xOffset = 3; 
 
         public Game() {
             //Initializing variables
@@ -40,14 +39,6 @@ namespace VideoPoker {
             drawables.Add(scoreText);
 
             InitButtons();
-
-            //setting messagePos that is relative to CardHand
-            Vector2 messagePos = new Vector2(cardHand.Position.x + cardHand.Width / 2 - messageForDiscard.Message.Length / 2,
-                                      cardHand.Position.y + cardHand.Height + yOffset
-                                    );
-            
-            messageForDiscard.Position = messagePos;
-            messageForDraw.Position = messagePos;
 
             focusables[0].Focus(true);
             Draw();
@@ -75,7 +66,7 @@ namespace VideoPoker {
                     drawState = DrawState.FirstHand;
             });
             //setting position, message and adding to lists
-            drawButton.Position = new Vector2(xOffset, cardHand.Position.y + cardHand.Height + yOffset);
+            drawButton.Position = new Vector2(cardHand.Position.x, cardHand.Position.y + cardHand.Height + drawButton.Height/2);
             drawButton.Message = drawButtonMessage;
 
             drawables.Add(drawButton as IDrawable);
