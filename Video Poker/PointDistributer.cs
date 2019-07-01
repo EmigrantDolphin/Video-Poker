@@ -3,13 +3,17 @@
 
 namespace Video_Poker {
 
+    enum PokerHand { RoyalFlush, StraightFlush, FourOfAKind, FullHouse, Flush, Straight, ThreeOfAKind, TwoPair, JacksOrBetter, None }
+
     struct EvaluateResult {
         public string Message;
         public int Score;
+        public PokerHand Hand;
 
-        public EvaluateResult(string message, int score) {
+        public EvaluateResult(PokerHand hand, int score, string message) {
             Message = message;
             Score = score;
+            Hand = hand;
         }
     }
 
@@ -24,25 +28,25 @@ namespace Video_Poker {
   
 
             if (IsRoyalFlush(cardsCopy))
-                return new EvaluateResult("Royal Flush!", 800);
+                return new EvaluateResult(PokerHand.RoyalFlush, 800, "Royal Flush!");
             if (IsStraightFlush(cardsCopy))
-                return new EvaluateResult("Straigh Flush!", 50);
+                return new EvaluateResult(PokerHand.StraightFlush, 50, "Straigh Flush!");
             if (IsFourOfAKind(rankCounter))
-                return new EvaluateResult("Four Of A Kind!", 25);
+                return new EvaluateResult(PokerHand.FourOfAKind, 25, "Four Of A Kind!");
             if (IsFullHouse(rankCounter))
-                return new EvaluateResult("Full House!", 9);
+                return new EvaluateResult(PokerHand.FullHouse, 9, "Full House!");
             if (IsFlush(cardsCopy))
-                return new EvaluateResult("Flush!", 6);
+                return new EvaluateResult(PokerHand.Flush, 6, "Flush!");
             if (IsStraight(cardsCopy))
-                return new EvaluateResult("Straight!", 4);
+                return new EvaluateResult(PokerHand.Straight, 4, "Straight!");
             if (IsThreeOfAKind(rankCounter))
-                return new EvaluateResult("Three Of A Kind!", 3);
+                return new EvaluateResult(PokerHand.ThreeOfAKind, 3, "Three Of A Kind!");
             if (IsTwoPair(rankCounter))
-                return new EvaluateResult("Two Pair!", 2);
+                return new EvaluateResult(PokerHand.TwoPair, 2, "Two Pair!");
             if (IsJacksOrBetter(cardsCopy))
-                return new EvaluateResult("Jacks Or Better!", 1);
+                return new EvaluateResult(PokerHand.JacksOrBetter, 1, "Jacks Or Better!");
 
-            return new EvaluateResult("You win NOTHING", 0);
+            return new EvaluateResult(PokerHand.None, 0, "You win NOTHING");
         }
 
 
