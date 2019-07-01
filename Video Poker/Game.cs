@@ -57,10 +57,10 @@ namespace Video_Poker {
                 if (drawState == DrawState.FirstHand) {
                     RandomizeSelectedCards();
                     Console.Clear();
-                    KeyValuePair<string, int> evaluationResult = PointDistributer.EvaluateHand(cardLayout.Cards);
-                    score += evaluationResult.Value;
+                    EvaluateResult evaluateResult = PointDistributer.EvaluateHand(cardLayout.Cards);
+                    score += evaluateResult.score;
                     Console.SetCursorPosition(3, 30);
-                    Console.Write(evaluationResult.Key + ", you win " + evaluationResult.Value + " points");
+                    Console.Write(evaluateResult.message + ", you win " + evaluateResult.score + " points");
                 } else {
                     RandomizeCards();
                     Console.Clear();
