@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 
 namespace VideoPoker {
-    enum CardType { Hearts, Clubs, Spades, Diamonds }
-    enum CardRank { One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace }
+    public enum CardType { Hearts, Clubs, Spades, Diamonds }
+    public enum CardRank { One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace }
 
     class Game {
         enum DrawState { FirstHand, DrawnHand }

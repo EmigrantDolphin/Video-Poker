@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("VideoPoker")]
+[assembly: AssemblyTitle("VideoPoker.UnitTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("VideoPoker")]
+[assembly: AssemblyProduct("VideoPoker.UnitTests")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4f3ae985-d9d6-4a1a-baa4-08e8b170651d")]
+[assembly: Guid("c7fb4cbf-ace2-41a5-9c10-94bf2939424b")]
 
 // Version information for an assembly consists of the following four values:
 //

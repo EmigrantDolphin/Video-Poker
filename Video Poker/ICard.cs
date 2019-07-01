@@ -1,7 +1,7 @@
 ﻿
 namespace VideoPoker {
 
-    interface ICard {
+    public interface ICard {
         Vector2 Position { get; set; }
         int Width { get; }
         int Height { get; }

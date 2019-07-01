@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace VideoPoker {
-    class Button : IFocusable, IDrawable {
+    public class Button : IFocusable, IDrawable {
 
         private Action action; // to be called on Press(); Set with lambda on declaration in constructor
         private Vector2 pos = new Vector2();

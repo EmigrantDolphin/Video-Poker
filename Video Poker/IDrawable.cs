@@ -1,6 +1,6 @@
 ﻿
 namespace VideoPoker {
-    interface IDrawable {
+    public interface IDrawable {
         void Draw();
     }
 }

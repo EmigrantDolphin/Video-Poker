@@ -3,9 +3,9 @@
 
 namespace VideoPoker {
 
-    enum PokerHand { RoyalFlush, StraightFlush, FourOfAKind, FullHouse, Flush, Straight, ThreeOfAKind, TwoPair, JacksOrBetter, None }
+    public enum PokerHand { RoyalFlush, StraightFlush, FourOfAKind, FullHouse, Flush, Straight, ThreeOfAKind, TwoPair, JacksOrBetter, None }
 
-    struct EvaluateResult {
+    public struct EvaluateResult {
         public string Message;
         public int Score;
         public PokerHand Hand;
@@ -17,7 +17,7 @@ namespace VideoPoker {
         }
     }
 
-    class PointDistributer {
+    public class PointDistributer {
 
         public static EvaluateResult EvaluateHand(List<ICard> cards) {
             List<ICard> cardsCopy = new List<ICard>(cards);
@@ -51,7 +51,6 @@ namespace VideoPoker {
 
 
         private static void PopulateRankCounter(List<ICard> cards, SortedDictionary<CardRank, int> rankCounter) {
-            rankCounter = new SortedDictionary<CardRank, int>();
             for (int i = 0; i < cards.Count; i++)
                 if (!rankCounter.ContainsKey(cards[i].Rank))
                     rankCounter.Add(cards[i].Rank, 0);

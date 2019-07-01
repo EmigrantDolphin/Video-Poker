@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace VideoPoker {
-    class Deck {
+    public class Deck {
         Random rnd = new Random();
         List<ICard> cardList;
 

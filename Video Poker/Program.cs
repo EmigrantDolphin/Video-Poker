@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace VideoPoker {
-    class Program {
+    public class Program {
         public static void Main(String[] args) {
             int windowWidth;
             int windowHeight;

@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace VideoPoker {
-    class Card : ICard, ISelectable, IFocusable, IDrawable {
+    public class Card : ICard, ISelectable, IFocusable, IDrawable {
         Vector2 pos = new Vector2();
         readonly int width = 15, height = 15;
         readonly Vector2 RANKPOS = new Vector2(2, 2);

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 namespace VideoPoker {
-    class CardLayout : IDrawable {
+    public class CardLayout : IDrawable {
 
         Vector2 pos;
         int width = 0, height = 0;

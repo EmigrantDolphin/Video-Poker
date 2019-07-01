@@ -1,6 +1,6 @@
 ﻿
 namespace VideoPoker {
-    interface IFocusable {
+    public interface IFocusable {
         void Focus(bool isFocused);
         void Press();
     }

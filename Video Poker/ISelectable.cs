@@ -1,7 +1,7 @@
 ﻿
 namespace VideoPoker {
 
-    interface ISelectable {
+    public interface ISelectable {
         void Select(bool isSelected);
         bool IsSelected { get; }
     }
