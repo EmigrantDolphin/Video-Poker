@@ -10,6 +10,10 @@ namespace VideoPoker {
         public Text(string message) {
             this.message = message;
         }
+        public Text(Vector2 pos) {
+            this.pos = pos;
+        }
+
         public Text(Vector2 pos, string message) {
             this.pos = pos;
             this.message = message;

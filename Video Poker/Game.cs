@@ -9,12 +9,12 @@ namespace VideoPoker {
         enum DrawState { FirstHand, DrawnHand }
 
         CardHand cardHand;
-        ConsoleKeyInfo keyInfo;
 
         int score = 0;
-        Vector2 scorePos = new Vector2(40, 1);
+        Text scoreText = new Text(new Vector2(40,1), "Score: 0"); //updated
         Text messageForDiscard = new Text("Selected cards to discard");
         Text messageForDraw = new Text("Draw to gamble again");
+        Text messageForResult = new Text(new Vector2(3,30)); //updated
 
         List<IFocusable> focusables;
         List<IDrawable> drawables;
@@ -23,8 +23,8 @@ namespace VideoPoker {
         Button drawButton;
         string drawButtonMessage = "Draw";
         DrawState drawState = DrawState.FirstHand;
-        int yOffset = 5; // used as distance from cardLayout bottom to button/message top
-        int xOffset = 3; // used as distance between buttons
+        int yOffset = 5; // used as distance between drawables
+        int xOffset = 3; 
 
         public Game() {
             //Initializing variables
@@ -37,10 +37,11 @@ namespace VideoPoker {
                 focusables.Add(card as IFocusable);
                 drawables.Add(card as IDrawable);
             }
+            drawables.Add(scoreText);
 
             InitButtons();
 
-            //setting messagePos that is relative to cardLayout which size is set on population in RandomizeCards()
+            //setting messagePos that is relative to CardHand
             Vector2 messagePos = new Vector2(cardHand.Position.x + cardHand.Width / 2 - messageForDiscard.Message.Length / 2,
                                       cardHand.Position.y + cardHand.Height + yOffset
                                     );
@@ -60,8 +61,9 @@ namespace VideoPoker {
                     Console.Clear();
                     EvaluateResult evaluateResult = PointDistributer.EvaluateHand(cardHand);
                     score += evaluateResult.Score;
-                    Console.SetCursorPosition(3, 30);
-                    Console.Write(evaluateResult.Message + ", you win " + evaluateResult.Score + " points");
+                    scoreText.Message = "Score: " + score;
+                    messageForResult.Message = evaluateResult.Message + ", you win " + evaluateResult.Score + " points";
+                    messageForResult.Draw();
                 } else {
                     cardHand.RandomizeCards();
                     Console.Clear();
@@ -84,7 +86,7 @@ namespace VideoPoker {
         public void Loop() {
             while (true) {
                 Console.SetCursorPosition(0, 0);
-                keyInfo = Console.ReadKey(); //Pause and readKey
+                ConsoleKeyInfo keyInfo = Console.ReadKey(); //Pause and readKey
 
                 if (keyInfo.Key == ConsoleKey.RightArrow)
                     MoveFocusUp();
@@ -105,10 +107,6 @@ namespace VideoPoker {
         }
 
         private void Draw() {
-            //draw score and message
-            Console.SetCursorPosition(scorePos.x, scorePos.y);
-            Console.Write("Score: " + score);
-
             if (drawState == DrawState.FirstHand)
                 messageForDiscard.Draw();
             else
