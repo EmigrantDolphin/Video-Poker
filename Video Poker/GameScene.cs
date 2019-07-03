@@ -6,7 +6,9 @@ namespace VideoPoker {
         enum DrawState { FirstHand, DrawnHand }
         List<IFocusable> focusables;
         List<IDrawable> drawables;
-        int focusIndex = 0; // currently focused item index in focusable list
+
+        // currently focused item index in focusable list
+        int focusIndex = 0; 
 
         CardHand cardHand;
 
@@ -22,11 +24,13 @@ namespace VideoPoker {
         DrawState drawState = DrawState.FirstHand;
 
         public GameScene() {
+
             //Initializing variables
             focusables = new List<IFocusable>();
             drawables = new List<IDrawable>();
-            cardHand = new CardHand();
-            cardHand.Position = new Vector2(3, 3);
+            cardHand = new CardHand() {
+                Position = new Vector2(3, 3)
+            };
 
             foreach (ICard card in cardHand) {
                 focusables.Add(card as IFocusable);
@@ -41,6 +45,7 @@ namespace VideoPoker {
         }
 
         private void InitButtons() {
+
             //passing lambda expression to action inside button
             drawButton = new Button(() => {
                 if (drawState == DrawState.FirstHand) {
@@ -61,6 +66,7 @@ namespace VideoPoker {
                 else
                     drawState = DrawState.FirstHand;
             });
+
             //setting position, message and adding to lists
             drawButton.Position = new Vector2(cardHand.Position.x, cardHand.Position.y + cardHand.Height + drawButton.Height / 2);
             drawButton.Message = drawButtonMessage;
@@ -74,6 +80,7 @@ namespace VideoPoker {
                 messageForDiscard.Draw();
             else
                 messageForDraw.Draw();
+
             //draw drawables
             foreach (IDrawable drawable in drawables)
                 drawable.Draw();
@@ -94,9 +101,12 @@ namespace VideoPoker {
         }
 
         public void PressSelected() {
-            if (drawState == DrawState.FirstHand) // onFirsHand everything can be selected/pressed
+
+            // onFirsHand everything can be selected/pressed
+            // on drawnHand cards can't be selected/pressed
+            if (drawState == DrawState.FirstHand) 
                 focusables[focusIndex].Press();
-            else if (!(focusables[focusIndex] is ICard)) // on drawnHand cards can't be selected/pressed
+            else if (!(focusables[focusIndex] is ICard)) 
                 focusables[focusIndex].Press();          
         }
     }

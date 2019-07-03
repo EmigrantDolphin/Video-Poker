@@ -3,10 +3,13 @@
 namespace VideoPoker {
     public class Button : IFocusable, IDrawable {
 
-        private Action action; // to be called on Press(); Set with lambda on declaration in constructor
+        // to be called on Press(); Set with lambda on declaration in constructor
+        private Action action; 
         private Vector2 pos = new Vector2();
         private Vector2 messagePos = new Vector2(2, 2);
-        private int width = 10, height = 5; //width dinamically changes to fit text
+
+        //width dinamically changes to fit text
+        private int width = 10, height = 5; 
         private string message = "Button";
 
         string wallSimbol = "o";
@@ -31,7 +34,9 @@ namespace VideoPoker {
             get { return message; }
             set {
                 message = value;
-                width = message.Length + messagePos.x * 2; // front and back
+
+                // front and back
+                width = message.Length + messagePos.x * 2; 
             }
         }
         public int Width {

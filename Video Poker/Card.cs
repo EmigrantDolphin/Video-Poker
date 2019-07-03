@@ -44,6 +44,7 @@ namespace VideoPoker {
         }
 
         public void Draw() {
+
             //draw frame
             Console.ForegroundColor = frameColor;
             for (int i = pos.x; i < width + pos.x; i++) {
@@ -61,7 +62,6 @@ namespace VideoPoker {
             Console.ForegroundColor = unSelectedFrameColor;
 
             //draw rank and type
-
             Console.ForegroundColor = cardColor;
             Console.SetCursorPosition(pos.x + rankPos.x, pos.y + rankPos.y);
             Console.Write(rank);

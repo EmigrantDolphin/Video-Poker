@@ -9,7 +9,8 @@ namespace VideoPoker {
         int height = 0;
         int xOffset = 3;
 
-        int position = -1; //for IEnumerable
+        //for IEnumerable
+        int position = -1; 
         readonly int maxSlots = 5;
         public int MaxSlots { get { return maxSlots; } }
         List<ICard> cards;
@@ -27,7 +28,9 @@ namespace VideoPoker {
         private void PositionCards() {
             for (int i = 0; i < maxSlots; i++)
                 cards[i].Position = new Vector2(pos.x + i * cards[i].Width + xOffset * i, pos.y);
-            width = cards[maxSlots - 1].Position.x + cards[maxSlots - 1].Width - pos.x; // last added card in mind
+
+            // last added card in mind
+            width = cards[maxSlots - 1].Position.x + cards[maxSlots - 1].Width - pos.x; 
             height = cards[maxSlots - 1].Height;
         }
 

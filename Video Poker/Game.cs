@@ -14,7 +14,7 @@ namespace VideoPoker {
         public void Loop() {
             while (true) {
                 Console.SetCursorPosition(0, 0);
-                ConsoleKeyInfo keyInfo = Console.ReadKey(); //Pause and readKey
+                ConsoleKeyInfo keyInfo = Console.ReadKey(); 
 
                 if (keyInfo.Key == ConsoleKey.RightArrow)
                     gameScene.MoveFocusUp();
@@ -25,7 +25,7 @@ namespace VideoPoker {
                 }
 
                 gameScene.Draw();
-                if (keyInfo.Key == ConsoleKey.Escape) // ends game
+                if (keyInfo.Key == ConsoleKey.Escape)
                     break;
             }
         }

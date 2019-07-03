@@ -37,7 +37,7 @@ namespace VideoPoker {
             }
 
             Console.Clear();
-            Game game = new Game();
+            var game = new Game();
             game.Loop();
 
             Console.BackgroundColor = ConsoleColor.Black;

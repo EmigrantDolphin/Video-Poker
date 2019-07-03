@@ -21,7 +21,10 @@ namespace VideoPoker {
 
         public static EvaluateResult EvaluateHand(CardHand cardHand) {
             List<ICard> cardsCopy = new List<ICard>(cardHand.CardList);
-            SortedDictionary<CardRank, int> rankCounter = new SortedDictionary<CardRank, int>(); // how many cards of same rank
+
+            // how many cards of same rank
+            SortedDictionary<CardRank, int> rankCounter = new SortedDictionary<CardRank, int>(); 
+
             SortByRank(cardsCopy);
             PopulateRankCounter(cardsCopy, rankCounter);
 
@@ -69,8 +72,10 @@ namespace VideoPoker {
         }
 
         private static bool IsSequential(List<ICard> cards) {
+
+            // ace can only be last card
             for (int i = 0; i < cards.Count - 1; i++) {
-                if (cards[i].Rank == CardRank.Ace) // ace can only be last card, var i here can't be last card
+                if (cards[i].Rank == CardRank.Ace) 
                     return false;
 
                 if (cards[i].Rank + 1 != cards[i + 1].Rank)
